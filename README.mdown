@@ -1,0 +1,27 @@
+### FontTool.py
+
+FontTool.py is a tool for creating textures and textures atlases from TrueType font files. 
+It uses PyGame (SDL) to render individual characters into a .png, and outputs a texture atlas
+containing the position and size of each glyph within the texture. Texture atlases can be output
+in either a simple flat text format or as an iOS-friendly property list.
+
+#### Usage
+
+Options:
+    -h, --help            show this help message and exit
+    -f FONT, --font=FONT  (REQUIRED) Name of the font to load (looks for
+                          <font>.ttf in the working directory)
+    -s SIZE, --size=SIZE  Desired font size (in points). Defaults to 64.
+    --surface=SURFACE_SIZE
+                          Size of the surface into which to render, of the form
+                          WIDTHxHEIGHT). Defaults to 512x512.
+    -c COLOR, --color=COLOR
+                          Color to render, of the form RRR,GGG,BBB. Defaults to
+                          255,255,255.
+    --chars=CHARACTERS    List of characters to include. Defaults to a
+                          reasonable list of mixed case alphanumerics and
+                          punctuation.
+    --plist               Flag indicating that we want the font information in
+                          Apple plist format (for loading with NSDictionary).
+    --no-aa               Disable anti-aliasing
+
