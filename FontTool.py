@@ -29,11 +29,11 @@ surfsize = (int(surfsize[0]),int(surfsize[1]))
 color = options.color.split(",")
 color = (int(color[0]),int(color[1]),int(color[2]))
 chars = options.characters
-image_filename = font+".png"
+image_filename = font+"-"+str(fontsize)+".png"
 output = "font"
 if options.plist:
 	output = "plist"
-text_filename = font+"."+output
+text_filename = font+"-"+str(fontsize)+"."+output
 antialias = options.antialias
 
 # plist XML needs (at least) these characters escaped...
