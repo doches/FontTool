@@ -51,7 +51,7 @@ spacing = 0
 x = spacing/2
 y = surfsize[1]
 linemax = 0
-fout = open(os.path.join(options.output,text_filename),"w")
+fout = open(os.path.join(options.output,os.path.basename(text_filename)),"w")
 if output == "plist":
 	fout.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n")
 	fout.write("<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n")
@@ -83,7 +83,7 @@ for c in chars:
 	except pygame.error:
 		print c
 
-pygame.image.save(surf,os.path.join(options.output,image_filename))
+pygame.image.save(surf,os.path.join(options.output,os.path.basename(image_filename)))
 if output == "plist":
 	fout.write("</dict>\n</plist>\n")
 fout.close
