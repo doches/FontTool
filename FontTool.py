@@ -9,10 +9,11 @@ parser.add_option("-f","--font",dest="font",help="(REQUIRED) Name of the font to
 parser.add_option("-s","--size",dest="size",type="int",help="Desired font size (in points). Defaults to 64.",default=64)
 parser.add_option("--surface",dest="surface_size",help="Size of the surface into which to render, of the form WIDTHxHEIGHT). Defaults to 512x512.",default="512x512")
 parser.add_option("-c","--color",dest="color",help="Color to render, of the form RRR,GGG,BBB. Defaults to 255,255,255.",default="255,255,255")
-parser.add_option("--chars",dest="characters",help="List of characters to include. Defaults to a reasonable list of mixed case alphanumerics and punctuation.",default=unicode("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789,.:!?@#$^&*()[]\"\'-/<>{}+;","UTF8","strict"))
+parser.add_option("--chars",dest="characters",help="List of characters to include. Defaults to a reasonable list of mixed case alphanumerics and punctuation.",default=unicode("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789,.:!?@#$^&*()[]\"\'-/<>{}+;=~\\_","UTF8","strict"))
 parser.add_option("--plist",action="store_true",dest="plist",default=False,help="Flag indicating that we want the font information in Apple plist format (for loading with NSDictionary).")
 parser.add_option("-u","--unicode",action="store_true",dest="unicode",default=False,help="Include bonus unicode characters.")
 parser.add_option("--no-aa",action="store_false",dest="antialias",default=True,help="Disable anti-aliasing")
+parser.add_option("-o", "--output",dest="output",default="./",help="Directory into which to save files. Defaults to current directory.")
 
 (options,parser) = parser.parse_args()
 
@@ -50,7 +51,7 @@ spacing = 0
 x = spacing/2
 y = surfsize[1]
 linemax = 0
-fout = open(text_filename,"w")
+fout = open(os.path.join(options.output,text_filename),"w")
 if output == "plist":
 	fout.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n")
 	fout.write("<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n")
@@ -82,7 +83,7 @@ for c in chars:
 	except pygame.error:
 		print c
 
-pygame.image.save(surf,image_filename)
+pygame.image.save(surf,os.path.join(options.output,image_filename))
 if output == "plist":
 	fout.write("</dict>\n</plist>\n")
 fout.close
